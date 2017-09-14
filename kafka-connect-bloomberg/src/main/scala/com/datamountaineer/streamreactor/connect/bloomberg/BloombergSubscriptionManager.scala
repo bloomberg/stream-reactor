@@ -93,6 +93,7 @@ class BloombergSubscriptionManager(correlationToSubscriptionMap: Map[Long, Strin
       val fieldsNo = element.numElements()
       val correlation = message.correlationID().value()
       logger.debug(s"Received subscription data event for correlation id=$correlation with $fieldsNo fields")
+      logger.info(s"Message payload: ${event.toString}")
 
       correlationToSubscriptionMap.get(correlation) match {
         case None => logger.warn(s"Received an unmatched correlation id: $correlation. All available correlation ids are $correlationToSubscriptionMap")

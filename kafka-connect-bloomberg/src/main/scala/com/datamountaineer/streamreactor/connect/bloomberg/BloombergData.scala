@@ -23,6 +23,7 @@ import com.bloomberglp.blpapi.Element
 import com.datamountaineer.streamreactor.connect.bloomberg.BloombergData._
 import com.datamountaineer.streamreactor.connect.bloomberg.avro.AvroSerializer._
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.typesafe.scalalogging.slf4j.StrictLogging
 import org.apache.kafka.connect.source.SourceRecord
 
 /**
@@ -63,7 +64,7 @@ private[bloomberg] object BloombergData {
     BloombergData(fields)
   }
 
-  implicit class BloombergDataToSourceRecordConverter(val data: BloombergData) extends AnyVal {
+  implicit class BloombergDataToSourceRecordConverter(val data: BloombergData) extends StrictLogging {
     /**
       * Converts a BloombergSubscriptionData to a kafka connect SourceRecord. The bloomberg data will be serialized as json;
       * It will contain all the fields and their values as they were received from the source
